@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Company Applications</title>
+  <style>
+    :root {
+      --primary: #0078ff;
+      --gray: #f5f6fa;
+      --dark: #333;
+      --radius: 12px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      background: var(--gray);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    /* Header */
+    header {
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+    .nav a {
+      color: var(--dark);
+      text-decoration: none;
+      margin: 0 0.5rem;
+      font-weight: 600;
+    }
+    .nav .logo {
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+    /* Hero */
+    .hero {
+      background: url('banner-placeholder.jpg') center/cover no-repeat;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+    .hero h1 {
+      font-size: 2rem;
+    }
+    /* Grid */
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+    }
+    .card img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+    .card .content {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+    .card p {
+      flex: 1;
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+    .card a {
+      align-self: flex-start;
+      background: var(--primary);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    /* Footer */
+    footer {
+      background: #fff;
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 3rem;
+    }
+    /* Mobile Nav */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        width: 100%;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      }
+      input#nav-toggle:checked ~ .nav-menu {
+        display: flex;
+      }
+      .nav-toggle-label {
+        display: block;
+        cursor: pointer;
+      }
+    }
+    .nav-toggle-label {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <span class="logo">CompanyName</span>
+      <input type="checkbox" id="nav-toggle" hidden />
+      <label for="nav-toggle" class="nav-toggle-label">☰</label>
+      <div class="nav-menu">
+        <a href="#">首頁</a>
+        <a href="#">產品應用</a>
+        <a href="#">解決方案</a>
+        <a href="#">關於我們</a>
+        <a href="#">聯絡</a>
+      </div>
+    </nav>
+  </header>
+  <section class="hero">
+    <h1>產品應用總覽</h1>
+  </section>
+  <main class="container">
+    <div class="grid">
+      <!-- Card 1 -->
+      <article class="card">
+        <img src="application1.jpg" alt="Application 1" />
+        <div class="content">
+          <h3>醫療級光纖感測</h3>
+          <p>高精度光纖溫度感測解決方案，適用於體腔內即時監測。</p>
+          <a href="#">查看更多</a>
+        </div>
+      </article>
+      <!-- Card 2 -->
+      <article class="card">
+        <img src="application2.jpg" alt="Application 2" />
+        <div class="content">
+          <h3>工業自動化通訊</h3>
+          <p>耐高干擾的高速光通訊模組，優化工業 4.0 設備資料鏈。</p>
+          <a href="#">查看更多</a>
+        </div>
+      </article>
+      <!-- Card 3 -->
+      <article class="card">
+        <img src="application3.jpg" alt="Application 3" />
+        <div class="content">
+          <h3>戶外 5G 小基站</h3>
+          <p>專為惡劣環境打造的光電轉換模組，確保 5G 小基站穩定運作。</p>
+          <a href="#">查看更多</a>
+        </div>
+      </article>
+      <!-- 更多卡片複製上面結構即可 -->
+    </div>
+  </main>
+  <footer>
+    Copyright © 2025 Your Company. All rights reserved.
+  </footer>
+</body>
+</html>
