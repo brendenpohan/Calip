@@ -3,112 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company Applications – JS SPA</title>
+  <title>Calip – 產品應用</title>
   <style>
-    :root {
-      --primary: #0078ff;
-      --gray: #f5f6fa;
-      --dark: #333;
-      --radius: 12px;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, "Noto Sans TC", sans-serif; background: var(--gray); color: var(--dark); line-height: 1.6; }
-    header { background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.05); position: sticky; top: 0; z-index: 100; }
-    .nav { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1rem; }
-    /* Brand */
-    .brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
-    .logo-img { width: 200px; height: 200px; object-fit: cover; border-radius: 50%; }
-    .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
-    .brand-text strong { font-size: 2rem; color: var(--dark); font-weight: 700;}
-    .brand-text span { font-size: .85rem; color: var(--dark); }
-    /* Nav links */
-    .nav a { color: var(--dark); text-decoration: none; margin: 0 .5rem; font-weight: 600; }
-    .hero { background: url('banner-placeholder.jpg') center/cover no-repeat; height: 300px; display: flex; align-items: center; justify-content: center; color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,.4); }
-    .hero h1 { font-size: 2rem; }
-    .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
-    .filter-bar { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-    .filter-btn { background: #fff; border: 1px solid var(--primary); color: var(--primary); padding: .4rem .8rem; border-radius: var(--radius); cursor: pointer; font-size: .9rem; transition: .2s; }
-    .filter-btn.active, .filter-btn:hover { background: var(--primary); color: #fff; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
-    .card { background: #fff; border-radius: var(--radius); box-shadow: 0 4px 10px rgba(0,0,0,.06); overflow: hidden; display: flex; flex-direction: column; transition: transform .2s; }
-    .card:hover { transform: translateY(-4px); }
-    .card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
-    .card .content { padding: 1rem; flex: 1; display: flex; flex-direction: column; }
-    .card h3 { margin-bottom: .5rem; font-size: 1.1rem; }
-    .card p { flex: 1; font-size: .95rem; color: #555; margin-bottom: 1rem; }
-    .card a { align-self: flex-start; background: var(--primary); color: #fff; padding: .5rem 1rem; border-radius: var(--radius); text-decoration: none; font-size: .9rem; }
-    footer { background: #fff; padding: 1.5rem 0; text-align: center; font-size: .9rem; color: #777; margin-top: 3rem; }
+    :root { --primary:#0078ff; --gray:#f5f6fa; --dark:#333; --radius:12px; }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:Arial,"Noto Sans TC",sans-serif;background:var(--gray);color:var(--dark);line-height:1.6;}
+    /* ---------- Header & Nav ---------- */
+    header{background:#e4f0fa;}
+    .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:1.2rem;}
+    .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;}
+    .logo-img{width:56px;height:56px;object-fit:cover;border-radius:50%;}
+    .brand-text strong{font-size:1.35rem;color:var(--dark);font-weight:700;}
+    .nav-menu{display:flex;gap:1rem;flex-wrap:wrap;}
+    .nav-menu a{color:var(--dark);text-decoration:none;font-weight:600;position:relative;}
+    .nav-menu a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--primary);transition:.3s;}
+    .nav-menu a:hover::after{width:100%;}
+    /* ---------- Search Bar ---------- */
+    .search-wrapper{background:#f0efed;padding:1.2rem 0;}
+    .search-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:.5rem;}
+    .search-inner input{width:280px;padding:.5rem .75rem;border:1px solid #ccc;border-radius:var(--radius);font-size:.95rem;}
+    .search-inner button{background:var(--primary);border:none;padding:.55rem 1rem;border-radius:var(--radius);cursor:pointer;}
+    .search-inner button svg{fill:#fff;width:18px;height:18px;}
+    /* ---------- Grid Section ---------- */
+    .container{max-width:1200px;margin:2rem auto;padding:0 1rem;}
+    .filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+    .filter-btn{background:#fff;border:1px solid var(--primary);color:var(--primary);padding:.4rem .8rem;border-radius:var(--radius);cursor:pointer;font-size:.9rem;transition:.2s;}
+    .filter-btn.active,.filter-btn:hover{background:var(--primary);color:#fff;}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;}
+    .card{background:#fff;border-radius:var(--radius);box-shadow:0 4px 10px rgba(0,0,0,.06);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s;}
+    .card:hover{transform:translateY(-4px);}
+    .card img{width:100%;aspect-ratio:16/9;object-fit:cover;}
+    .card .content{padding:1rem;flex:1;display:flex;flex-direction:column;}
+    .card h3{margin-bottom:.5rem;font-size:1.1rem;}
+    .card p{flex:1;font-size:.95rem;color:#555;margin-bottom:1rem;}
+    .card a{align-self:flex-start;background:var(--primary);color:#fff;padding:.5rem 1rem;border-radius:var(--radius);text-decoration:none;font-size:.9rem;}
+    footer{background:#fff;padding:1.5rem 0;text-align:center;font-size:.9rem;color:#777;margin-top:3rem;}
   </style>
 </head>
 <body>
+  <!-- ===== Header / Nav ===== -->
   <header>
     <nav class="nav">
-      <!-- LOGO + 文字 -->
-      <a href="#" class="brand">
-        <img src="Logo.png" alt="Company Logo" class="logo-img" />
-        <div class="brand-text">
-          <strong>開利普科技工業有限公司</strong>
-        </div>
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="Calip Logo" class="logo-img" />
+        <div class="brand-text"><strong>開利普科技工業有限公司</strong></div>
       </a>
-
-      <!-- Nav links -->
       <div class="nav-menu">
-        <a href="#">首頁</a>
-        <a href="#applications">產品應用</a>
-        <a href="#solutions">解決方案</a>
-        <a href="#about">關於我們</a>
-        <a href="#contact">聯絡</a>
+        <a href="index.html">首頁</a>
+        <a href="applications.html">產品應用</a>
+        <a href="solutions.html">解決方案</a>
+        <a href="about.html">關於我們</a>
+        <a href="contact.html">聯絡</a>
       </div>
     </nav>
   </header>
 
-  <section class="hero"><h1>產品應用總覽</h1></section>
+  <!-- ===== Search Bar ===== -->
+  <section class="search-wrapper">
+    <div class="search-inner">
+      <input type="search" placeholder="搜尋…" id="searchInput" />
+      <button id="searchBtn" aria-label="Search">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16a6.471 6.471 0 0 0 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14Z"/></svg>
+      </button>
+    </div>
+  </section>
 
+  <!-- ===== Main ===== -->
   <main class="container" id="app">
     <div class="filter-bar" id="filterBar"></div>
     <div class="grid" id="cardGrid"></div>
   </main>
 
-  <footer>Copyright © 2025 Your Company. All rights reserved.</footer>
+  <footer>Copyright © 2025 開利普科技工業有限公司. All rights reserved.</footer>
 
   <script>
-    const applications = [
-      { id: 1, title: "醫療級光纖感測", intro: "高精度光纖溫度感測解決方案，適用於體腔內即時監測。", img: "Test.png", category: "醫療" },
-      { id: 2, title: "工業自動化通訊", intro: "耐高干擾的高速光通訊模組，優化工業 4.0 設備資料鏈。", img: "Test.png", category: "工業" },
-      { id: 3, title: "戶外 5G 小基站", intro: "專為惡劣環境打造的光電轉換模組，確保 5G 小基站穩定運作。", img: "Test.png", category: "電信" }
-    ];
+    /* --------- Dummy Data --------- */
+    const applications=[{id:1,title:"醫療級光纖感測",intro:"高精度光纖溫度感測解決方案，適用於體腔內即時監測。",img:"Test.png",category:"醫療"},{id:2,title:"工業自動化通訊",intro:"耐高干擾的高速光通訊模組，優化工業 4.0 設備資料鏈。",img:"Test.png",category:"工業"},{id:3,title:"戶外 5G 小基站",intro:"專為惡劣環境打造的光電轉換模組，確保 5G 小基站穩定運作。",img:"Test.png",category:"電信"}];
 
-    const categories = ["全部", ...new Set(applications.map(a => a.category))];
-    const filterBar = document.getElementById("filterBar");
-    categories.forEach(cat => {
-      const btn = document.createElement("button");
-      btn.textContent = cat;
-      btn.className = "filter-btn" + (cat === "全部" ? " active" : "");
-      btn.onclick = () => filterCards(cat, btn);
-      filterBar.appendChild(btn);
-    });
+    /* --------- Render Filter Buttons --------- */
+    const categories=["全部",...new Set(applications.map(a=>a.category))];
+    const filterBar=document.getElementById("filterBar");
+    categories.forEach(cat=>{const btn=document.createElement("button");btn.textContent=cat;btn.className="filter-btn"+(cat==="全部"?" active":"");btn.onclick=()=>filterCards(cat,btn);filterBar.appendChild(btn);});
 
-    const grid = document.getElementById("cardGrid");
-    function renderCards(list) {
-      grid.innerHTML = list.map(card => `
-        <article class="card">
-          <img src="${card.img}" alt="${card.title}" />
-          <div class="content">
-            <h3>${card.title}</h3>
-            <p>${card.intro}</p>
-            <a href="#">查看更多</a>
-          </div>
-        </article>`).join("\n");
-    }
+    /* --------- Render Cards --------- */
+    const grid=document.getElementById("cardGrid");
+    function renderCards(list){grid.innerHTML=list.map(card=>`<article class="card"><img src="${card.img}" alt="${card.title}"/><div class="content"><h3>${card.title}</h3><p>${card.intro}</p><a href="#">查看更多</a></div></article>`).join("\n");}
 
-    function filterCards(category, clickedBtn) {
-      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-      clickedBtn.classList.add("active");
-      const filtered = category === "全部" ? applications : applications.filter(a => a.category === category);
-      renderCards(filtered);
-    }
+    function filterCards(category,clickedBtn){document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));clickedBtn.classList.add("active");const filtered=category==="全部"?applications:applications.filter(a=>a.category===category);renderCards(filtered);}
 
     renderCards(applications);
+
+    /* --------- Simple Search (in-page filter) --------- */
+    const searchInput=document.getElementById("searchInput");
+    document.getElementById("searchBtn").onclick=()=>{const kw=searchInput.value.trim();const list=kw?applications.filter(a=>a.title.includes(kw)||a.intro.includes(kw)):applications;renderCards(list);};
   </script>
 </body>
 </html>
