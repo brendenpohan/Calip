@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company Applications</title>
+  <title>Company Applications – JS SPA</title>
   <style>
     :root {
       --primary: #0078ff;
@@ -11,195 +11,105 @@
       --dark: #333;
       --radius: 12px;
     }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: Arial, "Noto Sans TC", sans-serif;
-      background: var(--gray);
-      color: var(--dark);
-      line-height: 1.6;
-    }
-    /* Header */
-    header {
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem;
-    }
-    .nav a {
-      color: var(--dark);
-      text-decoration: none;
-      margin: 0 0.5rem;
-      font-weight: 600;
-    }
-    .nav .logo {
-      font-size: 1.3rem;
-      color: var(--primary);
-    }
-    /* Hero */
-    .hero {
-      background: url('banner-placeholder.jpg') center/cover no-repeat;
-      height: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-    }
-    .hero h1 {
-      font-size: 2rem;
-    }
-    /* Grid */
-    .container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .card {
-      background: #fff;
-      border-radius: var(--radius);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.2s;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-    }
-    .card img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-    }
-    .card .content {
-      padding: 1rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .card h3 {
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
-    }
-    .card p {
-      flex: 1;
-      font-size: 0.95rem;
-      color: #555;
-      margin-bottom: 1rem;
-    }
-    .card a {
-      align-self: flex-start;
-      background: var(--primary);
-      color: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: var(--radius);
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-    /* Footer */
-    footer {
-      background: #fff;
-      padding: 1.5rem 0;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-      margin-top: 3rem;
-    }
-    /* Mobile Nav */
-    @media (max-width: 768px) {
-      .nav-menu {
-        display: none;
-        flex-direction: column;
-        background: #fff;
-        position: absolute;
-        top: 64px;
-        left: 0;
-        width: 100%;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      }
-      input#nav-toggle:checked ~ .nav-menu {
-        display: flex;
-      }
-      .nav-toggle-label {
-        display: block;
-        cursor: pointer;
-      }
-    }
-    .nav-toggle-label {
-      display: none;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, "Noto Sans TC", sans-serif; background: var(--gray); color: var(--dark); line-height: 1.6; }
+    header { background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.05); position: sticky; top: 0; z-index: 100; }
+    .nav { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1rem; }
+    /* Brand */
+    .brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+    .logo-img { width: 48px; height: 48px; object-fit: cover; border-radius: 50%; }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .brand-text strong { font-size: 1.2rem; color: var(--primary); }
+    .brand-text span { font-size: .85rem; color: var(--dark); }
+    /* Nav links */
+    .nav a { color: var(--dark); text-decoration: none; margin: 0 .5rem; font-weight: 600; }
+    .hero { background: url('banner-placeholder.jpg') center/cover no-repeat; height: 300px; display: flex; align-items: center; justify-content: center; color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,.4); }
+    .hero h1 { font-size: 2rem; }
+    .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+    .filter-bar { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .filter-btn { background: #fff; border: 1px solid var(--primary); color: var(--primary); padding: .4rem .8rem; border-radius: var(--radius); cursor: pointer; font-size: .9rem; transition: .2s; }
+    .filter-btn.active, .filter-btn:hover { background: var(--primary); color: #fff; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+    .card { background: #fff; border-radius: var(--radius); box-shadow: 0 4px 10px rgba(0,0,0,.06); overflow: hidden; display: flex; flex-direction: column; transition: transform .2s; }
+    .card:hover { transform: translateY(-4px); }
+    .card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+    .card .content { padding: 1rem; flex: 1; display: flex; flex-direction: column; }
+    .card h3 { margin-bottom: .5rem; font-size: 1.1rem; }
+    .card p { flex: 1; font-size: .95rem; color: #555; margin-bottom: 1rem; }
+    .card a { align-self: flex-start; background: var(--primary); color: #fff; padding: .5rem 1rem; border-radius: var(--radius); text-decoration: none; font-size: .9rem; }
+    footer { background: #fff; padding: 1.5rem 0; text-align: center; font-size: .9rem; color: #777; margin-top: 3rem; }
   </style>
 </head>
 <body>
   <header>
     <nav class="nav">
-      <span class="logo">CALIP 開利普科技</span>
-      <input type="checkbox" id="nav-toggle" hidden />
-      <label for="nav-toggle" class="nav-toggle-label">☰</label>
+      <!-- LOGO + 文字 -->
+      <a href="#" class="brand">
+        <img src="Logo.png" alt="Company Logo" class="logo-img" />
+        <div class="brand-text">
+          <strong>開利普科技</strong>
+          <span>Calip</span>
+        </div>
+      </a>
+
+      <!-- Nav links -->
       <div class="nav-menu">
         <a href="#">首頁</a>
-        <a href="#">產品應用</a>
-        <a href="#">解決方案</a>
-        <a href="#">關於我們</a>
-        <a href="#">聯絡</a>
+        <a href="#applications">產品應用</a>
+        <a href="#solutions">解決方案</a>
+        <a href="#about">關於我們</a>
+        <a href="#contact">聯絡</a>
       </div>
     </nav>
   </header>
-  <section class="hero">
-    <h1>產品應用總覽</h1>
-  </section>
-  <main class="container">
-    <div class="grid">
-      <!-- Card 1 -->
-      <article class="card">
-        <img src="PE_4_0.png" alt="Application 1" />
-        <div class="content">
-          <h3>醫療級光纖感測</h3>
-          <p>高精度光纖溫度感測解決方案，適用於體腔內即時監測。</p>
-          <a href="#">查看更多</a>
-        </div>
-      </article>
-      <!-- Card 2 -->
-      <article class="card">
-        <img src="PE_4_0.png" alt="Application 2" />
-        <div class="content">
-          <h3>工業自動化通訊</h3>
-          <p>耐高干擾的高速光通訊模組，優化工業 4.0 設備資料鏈。</p>
-          <a href="#">查看更多</a>
-        </div>
-      </article>
-      <!-- Card 3 -->
-      <article class="card">
-        <img src="PE_4_0.png" alt="Application 3" />
-        <div class="content">
-          <h3>戶外 5G 小基站</h3>
-          <p>專為惡劣環境打造的光電轉換模組，確保 5G 小基站穩定運作。</p>
-          <a href="#">查看更多</a>
-        </div>
-      </article>
-      <!-- 更多卡片複製上面結構即可 -->
-    </div>
+
+  <section class="hero"><h1>產品應用總覽</h1></section>
+
+  <main class="container" id="app">
+    <div class="filter-bar" id="filterBar"></div>
+    <div class="grid" id="cardGrid"></div>
   </main>
-  <footer>
-    Copyright © 2025 Your Company. All rights reserved.
-  </footer>
+
+  <footer>Copyright © 2025 Your Company. All rights reserved.</footer>
+
+  <script>
+    const applications = [
+      { id: 1, title: "醫療級光纖感測", intro: "高精度光纖溫度感測解決方案，適用於體腔內即時監測。", img: "application1.jpg", category: "醫療" },
+      { id: 2, title: "工業自動化通訊", intro: "耐高干擾的高速光通訊模組，優化工業 4.0 設備資料鏈。", img: "application2.jpg", category: "工業" },
+      { id: 3, title: "戶外 5G 小基站", intro: "專為惡劣環境打造的光電轉換模組，確保 5G 小基站穩定運作。", img: "application3.jpg", category: "電信" }
+    ];
+
+    const categories = ["全部", ...new Set(applications.map(a => a.category))];
+    const filterBar = document.getElementById("filterBar");
+    categories.forEach(cat => {
+      const btn = document.createElement("button");
+      btn.textContent = cat;
+      btn.className = "filter-btn" + (cat === "全部" ? " active" : "");
+      btn.onclick = () => filterCards(cat, btn);
+      filterBar.appendChild(btn);
+    });
+
+    const grid = document.getElementById("cardGrid");
+    function renderCards(list) {
+      grid.innerHTML = list.map(card => `
+        <article class="card">
+          <img src="${card.img}" alt="${card.title}" />
+          <div class="content">
+            <h3>${card.title}</h3>
+            <p>${card.intro}</p>
+            <a href="#">查看更多</a>
+          </div>
+        </article>`).join("\n");
+    }
+
+    function filterCards(category, clickedBtn) {
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      clickedBtn.classList.add("active");
+      const filtered = category === "全部" ? applications : applications.filter(a => a.category === category);
+      renderCards(filtered);
+    }
+
+    renderCards(applications);
+  </script>
 </body>
 </html>
