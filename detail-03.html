@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calip – 產品詳情</title>
+  <!-- ★ 與首頁共用的基礎樣式 ↓ -->
+  <style>
+    :root{--primary:#0078ff;--gray:#f5f6fa;--dark:#333;--radius:12px;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:Arial,"Noto Sans TC",sans-serif;background:var(--gray);color:var(--dark);}
+    /* Header & Nav -------------------------------------------------*/
+    header{background:#e4f0fa;}
+    .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:1.2rem;}
+    .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;}
+    .logo-img{width:56px;height:56px;object-fit:cover;border-radius:50%;}
+    .brand-text{display:flex;flex-direction:column;line-height:1.2;}
+    .brand-text strong{font-size:1.15rem;font-weight:700;color:var(--dark);}
+    .nav-menu{display:flex;gap:1rem;flex-wrap:wrap;}
+    .nav-menu a{color:var(--dark);text-decoration:none;font-weight:600;position:relative;}
+    .nav-menu a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--primary);transition:.3s;}
+    .nav-menu a:hover::after{width:100%;}
+    /* Post layout --------------------------------------------------*/
+    .post-wrap{max-width:900px;margin:3rem auto;padding:0 1rem;}
+    article{background:#fff;padding:2rem;border-radius:var(--radius);box-shadow:0 4px 10px rgba(0,0,0,.06);}
+    article h1{font-size:1.8rem;margin-bottom:1rem;}
+    article h2{font-size:1.35rem;margin:1.5rem 0 .5rem;}
+    article p{margin:1rem 0;line-height:1.8;}
+    article img{width:100%;border-radius:var(--radius);margin:1.5rem 0;}
+    /* Footer -------------------------------------------------------*/
+    footer{background:#fff;padding:1.5rem 0;text-align:center;font-size:.9rem;color:#777;margin-top:3rem;}
+  </style>
+</head>
+<body>
+  <!-- Header ------------------------------------------------------>
+  <header>
+    <nav class="nav">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="Calip Logo" class="logo-img">
+        <div class="brand-text"><strong>開利普科技工業有限公司</strong></div>
+      </a>
+      <div class="nav-menu">
+        <a href="index.html">首頁</a>
+        <a href="applications.html" target="_blank" rel="noopener">產品應用</a>
+        <a href="solutions.html"  target="_blank" rel="noopener">解決方案</a>
+        <a href="https://calip.com.tw/" target="_blank" rel="noopener">官方網站</a>
+        <a href="contact.html"      target="_blank" rel="noopener">聯絡</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 文章內容 ---------------------------------------------------->
+  <div class="post-wrap">
+    <article>
+      <h1>醫療級光纖感測 – 產品應用詳解</h1>
+      <p>這裡放一段導讀文字，說明產品在醫療體腔溫度監測上的核心優勢、臨床需求背景…</p>
+
+      <img src="Test.png" alt="主視覺">
+
+      <h2>產品特色</h2>
+      <p>
+        ‧ 高精度 ±0.1 °C<br>
+        ‧ 生物相容光纖包覆層<br>
+        ‧ 即插即用模組化設計
+      </p>
+
+      <h2>應用場景</h2>
+      <p>手術中心、加護病房…（自由增加段落、圖片或影片 iframe）</p>
+
+      <img src="Test.png" alt="應用示意">
+      <p>▲ 圖片說明：裝置在內視鏡手術中的安裝位置</p>
+    </article>
+  </div>
+
+  <footer>Copyright © 2025 開利普科技工業有限公司.</footer>
+</body>
+</html>
