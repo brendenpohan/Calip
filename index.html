@@ -79,8 +79,6 @@
   <script>
     /* --------- Dummy Data --------- */
     const applications=[{id:1,title:"醫療級光纖感測",intro:"高精度光纖溫度感測解決方案，適用於體腔內即時監測。",img:"Test.png",category:"醫療"},{id:2,title:"工業自動化通訊",intro:"耐高干擾的高速光通訊模組，優化工業 4.0 設備資料鏈。",img:"Test.png",category:"工業"},{id:3,title:"戶外 5G 小基站",intro:"專為惡劣環境打造的光電轉換模組，確保 5G 小基站穩定運作。",img:"Test.png",category:"電信"},{id:4,title:"測試",intro:"測試。",img:"Test.png",category:"電信"}];
-    const applications=[{id:1,title:"醫療級光纖感測",intro:"高精度光纖溫度感測解決方案，適用於體腔內即時監測。",img:"Test.png",category:"醫療"},{id:2,title:"工業自動化通訊",intro:"耐高干擾的高速光通訊模組，優化工業 4.0 設備資料鏈。",img:"Test.png",category:"工業"},{id:3,title:"戶外 5G 小基站",intro:"專為惡劣環境打造的光電轉換模組，確保 5G 小基站穩定運作。",img:"Test.png",category:"電信"},{id:4,title:"測試",intro:"測試。",img:"Test.png",category:"電信"}];
-
     /* --------- Render Filter Buttons --------- */
     const categories=["全部",...new Set(applications.map(a=>a.category))];
     const filterBar=document.getElementById("filterBar");
