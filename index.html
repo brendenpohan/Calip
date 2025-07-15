@@ -8,7 +8,6 @@
     :root { --primary:#0078ff; --gray:#f5f6fa; --dark:#333; --radius:12px; }
     *{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:Arial,"Noto Sans TC",sans-serif;background:var(--gray);color:var(--dark);line-height:1.6;}
-    /* ---------- Header & Nav ---------- */
     header{background:#e4f0fa;}
     .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:1.2rem;}
     .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;}
@@ -18,18 +17,16 @@
     .nav-menu a{color:var(--dark);text-decoration:none;font-weight:600;position:relative;}
     .nav-menu a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--primary);transition:.3s;}
     .nav-menu a:hover::after{width:100%;}
-    /* ---------- Search Bar ---------- */
     .search-wrapper{background:#f0efed;padding:1.2rem 0;}
     .search-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:.5rem;}
     .search-inner input{width:280px;padding:.5rem .75rem;border:1px solid #ccc;border-radius:var(--radius);font-size:.95rem;}
     .search-inner button{background:var(--primary);border:none;padding:.55rem 1rem;border-radius:var(--radius);cursor:pointer;}
     .search-inner button svg{fill:#fff;width:18px;height:18px;}
-    /* ---------- Grid Section ---------- */
     .container{max-width:1200px;margin:2rem auto;padding:0 1rem;}
     .filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;}
     .filter-btn{background:#fff;border:1px solid var(--primary);color:var(--primary);padding:.4rem .8rem;border-radius:var(--radius);cursor:pointer;font-size:.9rem;transition:.2s;}
     .filter-btn.active,.filter-btn:hover{background:var(--primary);color:#fff;}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
     .card{background:#fff;border-radius:var(--radius);box-shadow:0 4px 10px rgba(0,0,0,.06);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s;}
     .card:hover{transform:translateY(-4px);}
     .card img{width:100%;aspect-ratio:16/9;object-fit:cover;}
@@ -41,7 +38,6 @@
   </style>
 </head>
 <body>
-  <!-- ===== Header / Nav ===== -->
   <header>
     <nav class="nav">
       <a href="index.html" class="brand">
@@ -58,17 +54,15 @@
     </nav>
   </header>
 
-  <!-- ===== Search Bar ===== -->
   <section class="search-wrapper">
     <div class="search-inner">
-      <input type="search" placeholder="搜尋…" id="searchInput" />
+      <input type="search" placeholder="搜尋…" id="searchInput">
       <button id="searchBtn" aria-label="Search">
         <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16a6.471 6.471 0 0 0 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14Z"/></svg>
       </button>
     </div>
   </section>
 
-  <!-- ===== Main ===== -->
   <main class="container" id="app">
     <div class="filter-bar" id="filterBar"></div>
     <div class="grid" id="cardGrid"></div>
@@ -77,25 +71,58 @@
   <footer>Copyright © 2025 開利普科技工業有限公司. All rights reserved.</footer>
 
   <script>
-    /* --------- Dummy Data --------- */
-    const applications=[{id:1,title:"醫療級光纖感測",intro:"高精度光纖溫度感測解決方案，適用於體腔內即時監測。",img:"Test.png",category:"醫療"},{id:2,title:"工業自動化通訊",intro:"耐高干擾的高速光通訊模組，優化工業 4.0 設備資料鏈。",img:"Test.png",category:"工業"},{id:3,title:"戶外 5G 小基站",intro:"專為惡劣環境打造的光電轉換模組，確保 5G 小基站穩定運作。",img:"Test.png",category:"電信"}{id:4,title:"測試",intro:"測試",img:"Test.png",category:"電信"}];
+    /* --------- 12 測試卡：依序輪播原本三類 --------- */
+    const catList=["醫療","工業","電信"];
+    const applications = [
+      {id:1, title:"醫療級光纖感測", intro:"高精度光纖溫度感測解決方案，適用於體腔內即時監測。", img:"Test.png", category:"醫療"},
+      {id:2, title:"工業自動化通訊", intro:"耐高干擾的高速光通訊模組，優化工業 4.0 設備資料鏈。", img:"Test.png", category:"工業"},
+      {id:3, title:"戶外 5G 小基站", intro:"專為惡劣環境打造的光電轉換模組，確保 5G 小基站穩定運作。", img:"Test.png", category:"電信"},
+      {id:4, title:"測試 4", intro:"測試內容 4", img:"Test.png", category:"工業"},
+      {id:5, title:"測試 5", intro:"測試內容 5", img:"Test.png", category:"工業"},
+      {id:6, title:"測試 6", intro:"測試內容 6", img:"Test.png", category:"工業"},
+      {id:7, title:"測試 7", intro:"測試內容 7", img:"Test.png", category:"工業"},
+      {id:8, title:"測試 8", intro:"測試內容 8", img:"Test.png", category:"工業"},
+      {id:9, title:"測試 9", intro:"測試內容 9", img:"Test.png", category:"工業"},
+      {id:10, title:"測試 10", intro:"測試內容 10", img:"Test.png", category:"工業"},
+      {id:11, title:"測試 11", intro:"測試內容 11", img:"Test.png", category:"工業"},
+      {id:12, title:"測試 12", intro:"測試內容 12", img:"Test.png", category:"工業"},
+    ];
 
-    /* --------- Render Filter Buttons --------- */
+    /* --------- Filter Buttons：恢復原本分類 --------- */
     const categories=["全部",...new Set(applications.map(a=>a.category))];
     const filterBar=document.getElementById("filterBar");
-    categories.forEach(cat=>{const btn=document.createElement("button");btn.textContent=cat;btn.className="filter-btn"+(cat==="全部"?" active":"");btn.onclick=()=>filterCards(cat,btn);filterBar.appendChild(btn);});
+    categories.forEach(cat=>{
+      const btn=document.createElement("button");
+      btn.textContent=cat;
+      btn.className="filter-btn"+(cat==="全部"?" active":"");
+      btn.onclick=()=>filterCards(cat,btn);
+      filterBar.appendChild(btn);
+    });
 
     /* --------- Render Cards --------- */
     const grid=document.getElementById("cardGrid");
-    function renderCards(list){grid.innerHTML=list.map(card=><article class="card"><img src="${card.img}" alt="${card.title}"/><div class="content"><h3>${card.title}</h3><p>${card.intro}</p><a href="#">查看更多</a></div></article>).join("\n");}
+    function renderCards(list){
+      grid.innerHTML=list.map(card=>
+        `<article class="card"><img src="${card.img}" alt="${card.title}"><div class="content"><h3>${card.title}</h3><p>${card.intro}</p><a href="#">查看更多</a></div></article>`
+      ).join("\n");
+    }
 
-    function filterCards(category,clickedBtn){document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));clickedBtn.classList.add("active");const filtered=category==="全部"?applications:applications.filter(a=>a.category===category);renderCards(filtered);}
+    function filterCards(cat,btn){
+      document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      const data=cat==="全部"?applications:applications.filter(a=>a.category===cat);
+      renderCards(data);
+    }
 
     renderCards(applications);
 
-    /* --------- Simple Search (in-page filter) --------- */
-    const searchInput=document.getElementById("searchInput");
-    document.getElementById("searchBtn").onclick=()=>{const kw=searchInput.value.trim();const list=kw?applications.filter(a=>a.title.includes(kw)||a.intro.includes(kw)):applications;renderCards(list);};
+    /* --------- In‑page Search --------- */
+    const kwInput=document.getElementById("searchInput");
+    document.getElementById("searchBtn").onclick=()=>{
+      const kw=kwInput.value.trim();
+      const data=kw?applications.filter(a=>a.title.includes(kw)||a.intro.includes(kw)):applications;
+      renderCards(data);
+    };
   </script>
 </body>
 </html>
