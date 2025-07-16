@@ -70,7 +70,15 @@
     .nav-menu .btn{background:var(--primary);   /* 保持藍底 */color:#fff; /* 文字改白色 */padding:.45rem 1.2rem;border-radius:9999px;font-weight:580;text-decoration:none;}
     @media(max-width:480px){.logo-img{width:48px;height:48px;}.brand-text strong{font-size:1rem;}.nav-menu{gap:1rem;font-size:.9rem;}
     @media(max-width:768px){.search-inner{padding:0 1rem;}.search-inner input{flex:1;width:auto;}  /* 滿版 */
-                        
+    /* --- 基本漢堡樣式 --- */
+    .burger{font-size:1.8rem;cursor:pointer;display:none;          /* 預設隱藏，桌機不顯示 */}
+    /* --- 行動版才啟用 --- */
+    @media (max-width:768px){/* 1. 顯示漢堡，藏導覽列 */.burger{display:block;color:var(--primary);}
+   .nav-menu{position:absolute;left:0;right:0;top:72px;flex-direction:column;gap:1rem;padding:1.2rem;background:#fff;box-shadow:0 4px 10px rgba(0,0,0,.1);display:none;        /* 先藏起來 */}
+    /* 2. 打勾時展開 nav-menu */
+    #nav-toggle:checked ~ .nav-menu{display:flex;}
+}
+                    
 }
 
 }
@@ -96,6 +104,8 @@
         <a href="about.html"      target="_blank" rel="noopener">人機介面介什麼面</a>
         <a href="topics.html"     target="_blank" rel="noopener">驅動主題</a>
         <a href="https://calip.com.tw/" class="btn" target="_blank" rel="noopener">官網</a>
+        <input type="checkbox" id="nav-toggle" hidden>
+        <label for="nav-toggle" class="burger">☰</label>
       </div>
     </nav>
   </header>
