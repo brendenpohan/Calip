@@ -3,103 +3,118 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- 最重要：標籤順序不影響，只要放在 <head> 內 -->
   <title>Calip｜自動控制最佳夥伴</title>
 
-  <!-- Open Graph 基本四寶：讓 LINE、FB、Slack 顯示正確 -->
+  <!-- Open Graph（LINE / FB 預覽用）-->
   <meta property="og:title"       content="Calip｜自動控制最佳夥伴">
   <meta property="og:description" content="提供工控達人攻略、控制器應用、人機介面教學等完整解決方案。">
   <meta property="og:url"         content="https://calip.vercel.app/">
-  <meta property="og:image"       content="https://github.com/brendenpohan/Calip/blob/main/logo.png">
+  <meta property="og:image"       content="https://raw.githubusercontent.com/brendenpohan/Calip/main/logo.png">
 
   <style>
-    :root { --primary:#0078ff; --gray:#f5f6fa; --dark:#333; --radius:12px; }
+    :root{
+      --primary:#0078ff;
+      --gray:#f5f6fa;
+      --dark:#333;
+      --radius:12px;
+    }
     *{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:Arial,"Noto Sans TC",sans-serif;background:var(--gray);color:var(--dark);line-height:1.6;}
 
-    /* ---------- Header & Nav ---------- */
+    /*────────── Header / Nav ──────────*/
     header{background:#e4f0fa;}
     .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:1.2rem;}
-    /* brand 左側 */
-    .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:inherit;}
-    .logo-img{width:80px;height:80px;object-fit:cover;border-radius:50%;}
-    .brand-text{
-    display:flex;          /* 讓裡面文字用 Flex 排版 */
-    flex-direction:column; /* 直向排列 → 上公司名，下副標 */
-    line-height:1.5;      /* 行距保持原設定 */
-    align-items:flex-start;/* 兩行左對齊 */
-    }
-    .brand-text strong{font-size:1.75rem;font-weight:700;color:var(--dark);}
-    .brand-text span{font-size:1rem;color:#1b6dcf;}
 
-    /* 導覽列 */
+    .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:inherit;}
+    .logo-img{width:72px;height:72px;object-fit:cover;border-radius:50%;}
+
+    .brand-text{
+      display:flex;flex-direction:column;align-items:flex-start;line-height:1.4;
+    }
+    .brand-text strong{font-size:1.6rem;font-weight:700;color:var(--dark);}
+    .brand-text span{font-size:.95rem;color:#1b6dcf;}
+
     .nav-menu{display:flex;gap:2rem;align-items:center;}
     .nav-menu a{color:var(--primary);text-decoration:none;font-weight:600;position:relative;}
-    .nav-menu a:hover{opacity:.8;}
-    .nav-menu a:not(.btn)::after{content:\"\";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--primary);transition:.3s;}
+    .nav-menu a:not(.btn)::after{
+      content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;
+      background:var(--primary);transition:.3s;
+    }
     .nav-menu a:not(.btn):hover::after{width:100%;}
 
-    /* 官網按鈕 */
     .btn{background:var(--primary);color:#fff;padding:.45rem 1.2rem;border-radius:9999px;}
-    .btn:hover{opacity:.9;}
 
-    /* ---------- Search Bar ---------- */
+    /* ☰ 漢堡 */
+    .burger{display:none;font-size:1.8rem;cursor:pointer;color:var(--primary);user-select:none;}
+    #nav-toggle{display:none;}
+
+    /*────────── 行動版 (≤768px)──────────*/
+    @media(max-width:768px){
+      .burger{display:block;}
+      .nav{flex-wrap:wrap;row-gap:.5rem;padding:1rem;}
+      .nav-menu{
+        display:none;position:absolute;left:0;right:0;top:80px;
+        flex-direction:column;gap:1rem;padding:1.2rem;
+        background:#fff;box-shadow:0 4px 10px rgba(0,0,0,.1);z-index:999;
+      }
+      #nav-toggle:checked ~ .nav-menu{display:flex;}      /* 展開 */
+      .logo-img{width:48px;height:48px;}
+      .brand-text strong{font-size:1.25rem;}
+      .nav-menu a{font-size:.95rem;}
+    }
+
+    /*────────── Search Bar ──────────*/
     .search-wrapper{background:#f0efed;padding:1.2rem 0;}
     .search-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:.5rem;}
-    .search-inner input{width:280px;padding:.5rem .75rem;border:1px solid #ccc;border-radius:var(--radius);font-size:.95rem;}
-    .search-inner button{background:var(--primary);border:none;padding:.55rem 1rem;border-radius:var(--radius);cursor:pointer;}
+    .search-inner input{
+      width:280px;padding:.5rem .75rem;border:1px solid #ccc;
+      border-radius:var(--radius);font-size:.95rem;
+    }
+    .search-inner button{
+      background:var(--primary);border:none;padding:.55rem 1rem;
+      border-radius:var(--radius);cursor:pointer;
+    }
     .search-inner button svg{fill:#fff;width:18px;height:18px;}
 
-    /* ---------- Grid / Cards ---------- (保持不變) */
+    /*────────── Grid / Card ──────────*/
     .container{max-width:1200px;margin:2rem auto;padding:0 1rem;}
+
     .filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;}
-    .filter-btn{background:#fff;border:1px solid var(--primary);color:var(--primary);padding:.4rem .8rem;border-radius:var(--radius);cursor:pointer;font-size:.9rem;transition:.2s;}
+    .filter-btn{
+      background:#fff;border:1px solid var(--primary);color:var(--primary);
+      padding:.4rem .8rem;border-radius:var(--radius);cursor:pointer;font-size:.9rem;transition:.2s;
+    }
     .filter-btn.active,.filter-btn:hover{background:var(--primary);color:#fff;}
-    .grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); /* 260 px 以下就斷行 */}
+
+    .grid{
+      display:grid;gap:1.5rem;
+      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    }
+
     .card-link{text-decoration:none;color:inherit;}
-    .card{background:#fff;border-radius:var(--radius);box-shadow:0 4px 10px rgba(0,0,0,.06);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s;}
+    .card{
+      background:#fff;border-radius:var(--radius);box-shadow:0 4px 10px rgba(0,0,0,.06);
+      display:flex;flex-direction:column;height:100%;transition:transform .2s;
+    }
     .card:hover{transform:translateY(-4px);}
     .card img{width:100%;aspect-ratio:16/9;object-fit:cover;}
-    .card .content{padding:1rem;flex:1;display:flex;flex-direction:column;}
+    .card .content{padding:1rem;display:flex;flex-direction:column;flex:1;}
     .card h3{margin-bottom:.5rem;font-size:1.1rem;}
     .card p{flex:1;font-size:.95rem;color:#555;margin-bottom:1rem;}
-    .more{align-self:flex-start;background:var(--primary);color:#fff;padding:.5rem 1rem;border-radius:var(--radius);font-size:.9rem;}
+    .more{
+      margin-top:auto;background:var(--primary);color:#fff;
+      padding:.5rem 1rem;border-radius:var(--radius);font-size:.9rem;
+      align-self:flex-start;
+    }
+
+    /*────────── Footer ──────────*/
     footer{background:#fff;padding:1.5rem 0;text-align:center;font-size:.9rem;color:#777;margin-top:3rem;}
-    /* 只針對 nav 裡 class="btn" 的官網按鈕 */
-    .nav-menu .btn{background:var(--primary);   /* 保持藍底 */color:#fff; /* 文字改白色 */padding:.45rem 1.2rem;border-radius:9999px;font-weight:580;text-decoration:none;}
-    @media(max-width:480px){.logo-img{width:48px;height:48px;}.brand-text strong{font-size:1rem;}.nav-menu{gap:1rem;font-size:.9rem;}
-    @media(max-width:768px){.search-inner{padding:0 1rem;}.search-inner input{flex:1;width:auto;}  /* 滿版 */
-    /* === HAMBURGER MENU (≤768px) =============================== */
-    .burger{display:none;font-size:1.8rem;cursor:pointer;color:var(--primary);user-select:none;}
-
-    #nav-toggle{display:none;}        /* 隱藏 checkbox 本體 */
-
-    /* 行動版觸發 */
-    @media(max-width:768px){ /* 1. 讓漢堡顯示、藏 nav-menu */.burger{display:block;}
-    .nav-menu{/* 預設收起 */display:none;position:absolute;left:0;right:0;top:80px;flex-direction:column;gap:1rem;padding:1.2rem;background:#fff;box-shadow:0 4px 10px rgba(0,0,0,.1);z-index:999;}
-    /* 2. 打勾時展開 nav-menu */
-    #nav-toggle:checked ~ .nav-menu{display:flex;}
-    /* 3. 讓 header 變直向 (Logo 上, 漢堡右) */
-   .nav{flex-wrap:wrap;row-gap:0.5rem;padding:1rem;}
-   .nav-menu a{font-size:.95rem;}
-}
-
-}
-
-}
-                    
-}
-
-}
-
   </style>
 </head>
 <body>
-  <!-- ---------- Header ---------- -->
+<!--────────── Header ──────────-->
 <header>
   <nav class="nav">
-    <!-- LOGO + 公司名 -->
     <a href="index.html" class="brand">
       <img src="logo.png" alt="Calip Logo" class="logo-img">
       <div class="brand-text">
@@ -108,11 +123,9 @@
       </div>
     </a>
 
-    <!-- ☰ 漢堡切換 -->
     <input type="checkbox" id="nav-toggle" hidden>
     <label for="nav-toggle" class="burger">☰</label>
 
-    <!-- 導覽列 -->
     <div class="nav-menu">
       <a href="index.html">首頁</a>
       <a href="applications.html" target="_blank" rel="noopener">工控達人攻略</a>
@@ -124,78 +137,82 @@
   </nav>
 </header>
 
+<!--────────── Search Bar ──────────-->
+<section class="search-wrapper">
+  <div class="search-inner">
+    <input type="search" placeholder="搜尋…" id="searchInput">
+    <button id="searchBtn" aria-label="Search">
+      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16a6.471 6.471 0 0 0 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14Z"/></svg>
+    </button>
+  </div>
+</section>
 
-  <!-- ---------- Search Bar ---------- -->
-  <section class="search-wrapper">
-    <div class="search-inner">
-      <input type="search" placeholder="搜尋…" id="searchInput">
-      <button id="searchBtn" aria-label="Search">
-        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16a6.471 6.471 0 0 0 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14Z\"/></svg>
-      </button>
-    </div>
-  </section>
+<!--────────── Main ──────────-->
+<main class="container" id="app">
+  <div class="filter-bar" id="filterBar"></div>
+  <div class="grid" id="cardGrid"></div>
+</main>
 
-  <!-- ---------- 主內容 (卡片、篩選、搜尋 JS 與你現有程式一致) ---------- -->
-  <main class="container" id="app">
-    <div class="filter-bar" id="filterBar"></div>
-    <div class="grid" id="cardGrid"></div>
-  </main>
+<footer>Copyright © 2025 開利普科技工業有限公司. All rights reserved.</footer>
 
-  <footer>Copyright © 2025 開利普科技工業有限公司. All rights reserved.</footer>
+<script>
+/*─── 產品資料 ───*/
+const applications=[
+  {id:1,title:\"醫療級光纖感測\",intro:\"高精度光纖溫度感測解決方案，適用於體腔內即時監測。\",img:\"Test.png\",category:\"網通\",link:\"detail-01.html\"},
+  {id:2,title:\"工業自動化通訊\",intro:\"耐高干擾的高速光通訊模組，優化工業 4.0 設備資料鏈。\",img:\"Test.png\",category:\"工業電腦\",link:\"detail-02.html\"},
+  {id:3,title:\"戶外 5G 小基站\",intro:\"專為惡劣環境打造的光電轉換模組，確保 5G 小基站穩定運作。\",img:\"Test.png\",category:\"能源管理\",link:\"detail-03.html\"},
+  {id:4,title:\"測試 4\",intro:\"測試內容 4\",img:\"Test.png\",category:\"智慧製造\",link:\"detail-04.html\"},
+  {id:5,title:\"測試 5\",intro:\"測試內容 5\",img:\"Test.png\",category:\"工業電腦\",link:\"detail-05.html\"},
+  {id:6,title:\"測試 6\",intro:\"測試內容 6\",img:\"Test.png\",category:\"工業電腦\",link:\"detail-06.html\"},
+  {id:7,title:\"測試 7\",intro:\"測試內容 7\",img:\"Test.png\",category:\"工業電腦\",link:\"detail-07.html\"},
+  {id:8,title:\"測試 8\",intro:\"測試內容 8\",img:\"Test.png\",category:\"工業電腦\",link:\"detail-08.html\"},
+  {id:9,title:\"測試 9\",intro:\"測試內容 9\",img:\"Test.png\",category:\"工業電腦\",link:\"detail-09.html\"},
+  {id:10,title:\"測試 10\",intro:\"測試內容 10\",img:\"Test.png\",category:\"工業電腦\",link:\"detail-10.html\"},
+  {id:11,title:\"測試 11\",intro:\"測試內容 11\",img:\"Test.png\",category:\"工業電腦\",link:\"detail-11.html\"},
+  {id:12,title:\"測試 12\",intro:\"測試內容 12\",img:\"Test.png\",category:\"工業電腦\",link:\"detail-12.html\"}
+];
 
-  <!-- JS放這裡 -->
-    <script>
-    /* --------- 產品資料 (含 link) --------- */
-    const applications = [
-      {id:1,title:"醫療級光纖感測",intro:"高精度光纖溫度感測解決方案，適用於體腔內即時監測。",img:"Test.png",category:"網通",link:"detail-01.html"},
-      {id:2,title:"工業自動化通訊",intro:"耐高干擾的高速光通訊模組，優化工業 4.0 設備資料鏈。",img:"Test.png",category:"工業電腦",link:"detail-02.html"},
-      {id:3,title:"戶外 5G 小基站",intro:"專為惡劣環境打造的光電轉換模組，確保 5G 小基站穩定運作。",img:"Test.png",category:"能源管理",link:"detail-03.html"},
-      {id:4,title:"測試 4",intro:"測試內容 4",img:"Test.png",category:"智慧製造",link:"detail-04.html"},
-      {id:5,title:"測試 5",intro:"測試內容 5",img:"Test.png",category:"工業電腦",link:"detail-05.html"},
-      {id:6,title:"測試 6",intro:"測試內容 6",img:"Test.png",category:"工業電腦",link:"detail-06.html"},
-      {id:7,title:"測試 7",intro:"測試內容 7",img:"Test.png",category:"工業電腦",link:"detail-07.html"},
-      {id:8,title:"測試 8",intro:"測試內容 8",img:"Test.png",category:"工業電腦",link:"detail-08.html"},
-      {id:9,title:"測試 9",intro:"測試內容 9",img:"Test.png",category:"工業電腦",link:"detail-09.html"},
-      {id:10,title:"測試 10",intro:"測試內容 10",img:"Test.png",category:"工業電腦",link:"detail-10.html"},
-      {id:11,title:"測試 11",intro:"測試內容 11",img:"Test.png",category:"工業電腦",link:"detail-11.html"},
-      {id:12,title:"測試 12",intro:"測試內容 12",img:"Test.png",category:"工業電腦",link:"detail-12.html"}
-    ];
+/*─── 分類按鈕 ───*/
+const categories=[\"全部\",...new Set(applications.map(a=>a.category))];
+const filterBar=document.getElementById(\"filterBar\");
+categories.forEach(cat=>{
+  const btn=document.createElement(\"button\");
+  btn.textContent=cat;
+  btn.className=\"filter-btn\"+(cat===\"全部\"?\" active\":\"\");
+  btn.onclick=()=>filterCards(cat,btn);
+  filterBar.appendChild(btn);
+});
 
-    /* --------- 產生分類按鈕 --------- */
-    const categories = ["全部", ...new Set(applications.map(a => a.category))];
-    const filterBar = document.getElementById("filterBar");
-    categories.forEach(cat => {
-      const btn = document.createElement("button");
-      btn.textContent = cat;
-      btn.className = "filter-btn" + (cat === "全部" ? " active" : "");
-      btn.onclick = () => filterCards(cat, btn);
-      filterBar.appendChild(btn);
-    });
+/*─── 卡片渲染 ───*/
+const grid=document.getElementById(\"cardGrid\");
+function renderCards(list){
+  grid.innerHTML=list.map(card=>`
+    <a href=\"${card.link}\" class=\"card-link\">
+      <article class=\"card\">
+        <img src=\"${card.img}\" alt=\"${card.title}\">
+        <div class=\"content\">
+          <h3>${card.title}</h3>
+          <p>${card.intro}</p>
+          <span class=\"more\">查看更多</span>
+        </div>
+      </article>
+    </a>`).join(\"`);
+}
+function filterCards(cat,btn){
+  document.querySelectorAll(\".filter-btn\").forEach(b=>b.classList.remove(\"active\"));
+  btn.classList.add(\"active\");
+  const data=cat===\"全部\"?applications:applications.filter(a=>a.category===cat);
+  renderCards(data);
+}
+renderCards(applications);
 
-    /* --------- 渲染卡片 --------- */
-    const grid = document.getElementById("cardGrid");
-    function renderCards(list) {
-      grid.innerHTML = list.map(card =>
-        `<a href="${card.link}" class="card-link"><article class="card"><img src="${card.img}" alt="${card.title}"><div class="content"><h3>${card.title}</h3><p>${card.intro}</p><span class="more">查看更多</span></div></article></a>`).join("");
-    }
-
-    function filterCards(cat, btn) {
-      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      const data = cat === "全部" ? applications : applications.filter(a => a.category === cat);
-      renderCards(data);
-    }
-
-    /* 初次渲染 */
-    renderCards(applications);
-
-    /* --------- 搜尋 --------- */
-    const kwInput = document.getElementById("searchInput");
-    document.getElementById("searchBtn").onclick = () => {
-      const kw = kwInput.value.trim();
-      const data = kw ? applications.filter(a => a.title.includes(kw) || a.intro.includes(kw)) : applications;
-      renderCards(data);
-    };
-  </script>
+/*─── 搜尋 ───*/
+const kwInput=document.getElementById(\"searchInput\");
+document.getElementById(\"searchBtn\").onclick=()=>{
+  const kw=kwInput.value.trim();
+  const data=kw?applications.filter(a=>a.title.includes(kw)||a.intro.includes(kw)):applications;
+  renderCards(data);
+};
+</script>
 </body>
 </html>
