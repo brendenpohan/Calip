@@ -70,17 +70,21 @@
     .nav-menu .btn{background:var(--primary);   /* 保持藍底 */color:#fff; /* 文字改白色 */padding:.45rem 1.2rem;border-radius:9999px;font-weight:580;text-decoration:none;}
     @media(max-width:480px){.logo-img{width:48px;height:48px;}.brand-text strong{font-size:1rem;}.nav-menu{gap:1rem;font-size:.9rem;}
     @media(max-width:768px){.search-inner{padding:0 1rem;}.search-inner input{flex:1;width:auto;}  /* 滿版 */
-    /* --- 基本漢堡樣式 --- */
-    .burger{font-size:1.8rem;cursor:pointer;display:none;          /* 預設隱藏，桌機不顯示 */}
-    /* --- 行動版才啟用 --- */
-    /* === 行動版導覽列排版修正 === */
-    @media (max-width:768px){/* 1. 整個 nav 直向排列 */.nav{flex-direction:column;align-items:flex-start;   /* 讓文字靠左排 */padding:1rem;            /* 手機邊距小一點 */}
+    /* === HAMBURGER MENU (≤768px) =============================== */
+    .burger{display:none;font-size:1.8rem;cursor:pointer;color:var(--primary);user-select:none;}
 
-    /* 2. nav-menu 換行顯示，不再 nowrap */
-    .nav-menu{flex-wrap:wrap;gap:1rem 1.2rem;         /* 行與行、字與字的間距 */overflow:visible;        /* 不再橫向捲動 */margin-top:.5rem;        /* 與 Logo 區塊留距 */}
+    #nav-toggle{display:none;}        /* 隱藏 checkbox 本體 */
 
-    /* 3. 字稍微縮小，避免兩行就塞滿 */
-    .nav-menu a{font-size:.9rem;}
+    /* 行動版觸發 */
+    @media(max-width:768px){ /* 1. 讓漢堡顯示、藏 nav-menu */.burger{display:block;}
+    .nav-menu{/* 預設收起 */display:none;position:absolute;left:0;right:0;top:80px;flex-direction:column;gap:1rem;padding:1.2rem;background:#fff;box-shadow:0 4px 10px rgba(0,0,0,.1);z-index:999;}
+    /* 2. 打勾時展開 nav-menu */
+    #nav-toggle:checked ~ .nav-menu{display:flex;}
+    /* 3. 讓 header 變直向 (Logo 上, 漢堡右) */
+   .nav{flex-wrap:wrap;row-gap:0.5rem;padding:1rem;}
+   .nav-menu a{font-size:.95rem;}
+}
+
 }
 
 }
@@ -93,28 +97,33 @@
 </head>
 <body>
   <!-- ---------- Header ---------- -->
-  <header>
-    <nav class="nav">
-      <a href="index.html" class="brand">
-        <img src="logo.png" alt="Calip Logo" class="logo-img">
-        <div class="brand-text">
-          <strong>開利普科技</strong>
-          <span>自動控制的好夥伴</span>
-        </div>
-      </a>
-
-      <div class="nav-menu">
-        <a href="index.html">首頁</a>
-        <a href="applications.html" target="_blank" rel="noopener">工控達人攻略</a>
-        <a href="solutions.html" target="_blank" rel="noopener">控制器控什麼</a>
-        <a href="about.html"      target="_blank" rel="noopener">人機介面介什麼面</a>
-        <a href="topics.html"     target="_blank" rel="noopener">驅動主題</a>
-        <a href="https://calip.com.tw/" class="btn" target="_blank" rel="noopener">官網</a>
-        <input type="checkbox" id="nav-toggle" hidden>
-        <label for="nav-toggle" class="burger">☰</label>
+<header>
+  <nav class="nav">
+    <!-- LOGO + 公司名 -->
+    <a href="index.html" class="brand">
+      <img src="logo.png" alt="Calip Logo" class="logo-img">
+      <div class="brand-text">
+        <strong>開利普科技</strong>
+        <span>自動控制的好夥伴</span>
       </div>
-    </nav>
-  </header>
+    </a>
+
+    <!-- ☰ 漢堡切換 -->
+    <input type="checkbox" id="nav-toggle" hidden>
+    <label for="nav-toggle" class="burger">☰</label>
+
+    <!-- 導覽列 -->
+    <div class="nav-menu">
+      <a href="index.html">首頁</a>
+      <a href="applications.html" target="_blank" rel="noopener">工控達人攻略</a>
+      <a href="solutions.html"  target="_blank" rel="noopener">控制器控什麼</a>
+      <a href="about.html"      target="_blank" rel="noopener">人機介面介什麼面</a>
+      <a href="topics.html"     target="_blank" rel="noopener">驅動主題</a>
+      <a href="https://calip.com.tw/" class="btn" target="_blank" rel="noopener">官網</a>
+    </div>
+  </nav>
+</header>
+
 
   <!-- ---------- Search Bar ---------- -->
   <section class="search-wrapper">
