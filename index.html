@@ -15,7 +15,12 @@
     /* brand 左側 */
     .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:inherit;}
     .logo-img{width:64px;height:64px;object-fit:cover;border-radius:50%;}
-    .brand-text{line-height:1.25;}
+    .brand-text{
+    display:flex;          /* 讓裡面文字用 Flex 排版 */
+    flex-direction:column; /* 直向排列 → 上公司名，下副標 */
+    line-height:1.5;      /* 行距保持原設定 */
+    align-items:flex-start;/* 兩行左對齊 */
+    }
     .brand-text strong{font-size:1.25rem;font-weight:700;color:var(--dark);}
     .brand-text span{font-size:.8rem;color:#1b6dcf;}
 
