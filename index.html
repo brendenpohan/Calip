@@ -73,10 +73,16 @@
     /* --- 基本漢堡樣式 --- */
     .burger{font-size:1.8rem;cursor:pointer;display:none;          /* 預設隱藏，桌機不顯示 */}
     /* --- 行動版才啟用 --- */
-    @media (max-width:768px){/* 1. 顯示漢堡，藏導覽列 */.burger{display:block;color:var(--primary);}
-   .nav-menu{position:absolute;left:0;right:0;top:72px;flex-direction:column;gap:1rem;padding:1.2rem;background:#fff;box-shadow:0 4px 10px rgba(0,0,0,.1);display:none;        /* 先藏起來 */}
-    /* 2. 打勾時展開 nav-menu */
-    #nav-toggle:checked ~ .nav-menu{display:flex;}
+    /* === 行動版導覽列排版修正 === */
+    @media (max-width:768px){/* 1. 整個 nav 直向排列 */.nav{flex-direction:column;align-items:flex-start;   /* 讓文字靠左排 */padding:1rem;            /* 手機邊距小一點 */}
+
+    /* 2. nav-menu 換行顯示，不再 nowrap */
+    .nav-menu{flex-wrap:wrap;gap:1rem 1.2rem;         /* 行與行、字與字的間距 */overflow:visible;        /* 不再橫向捲動 */margin-top:.5rem;        /* 與 Logo 區塊留距 */}
+
+    /* 3. 字稍微縮小，避免兩行就塞滿 */
+    .nav-menu a{font-size:.9rem;}
+}
+
 }
                     
 }
