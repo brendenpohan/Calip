@@ -14,15 +14,15 @@
     .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:1.2rem;}
     /* brand 左側 */
     .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:inherit;}
-    .logo-img{width:64px;height:64px;object-fit:cover;border-radius:50%;}
+    .logo-img{width:80px;height:80px;object-fit:cover;border-radius:50%;}
     .brand-text{
     display:flex;          /* 讓裡面文字用 Flex 排版 */
     flex-direction:column; /* 直向排列 → 上公司名，下副標 */
     line-height:1.5;      /* 行距保持原設定 */
     align-items:flex-start;/* 兩行左對齊 */
     }
-    .brand-text strong{font-size:1.25rem;font-weight:700;color:var(--dark);}
-    .brand-text span{font-size:.8rem;color:#1b6dcf;}
+    .brand-text strong{font-size:1.75rem;font-weight:700;color:var(--dark);}
+    .brand-text span{font-size:1rem;color:#1b6dcf;}
 
     /* 導覽列 */
     .nav-menu{display:flex;gap:2rem;align-items:center;}
@@ -57,6 +57,8 @@
     .card p{flex:1;font-size:.95rem;color:#555;margin-bottom:1rem;}
     .more{align-self:flex-start;background:var(--primary);color:#fff;padding:.5rem 1rem;border-radius:var(--radius);font-size:.9rem;}
     footer{background:#fff;padding:1.5rem 0;text-align:center;font-size:.9rem;color:#777;margin-top:3rem;}
+    /* 只針對 nav 裡 class="btn" 的官網按鈕 */
+    .nav-menu .btn{background:var(--primary);   /* 保持藍底 */color:#fff; /* 文字改白色 */padding:.45rem 1.2rem;border-radius:9999px;font-weight:580;text-decoration:none;}
   </style>
 </head>
 <body>
@@ -74,8 +76,8 @@
       <div class="nav-menu">
         <a href="index.html">首頁</a>
         <a href="applications.html" target="_blank" rel="noopener">工控達人攻略</a>
-        <a href="solutions.html" target="_blank" rel="noopener">控制器控制什麼</a>
-        <a href="about.html"      target="_blank" rel="noopener">人機介面介紹</a>
+        <a href="solutions.html" target="_blank" rel="noopener">控制器控什麼</a>
+        <a href="about.html"      target="_blank" rel="noopener">人機介面介什麼面</a>
         <a href="topics.html"     target="_blank" rel="noopener">驅動主題</a>
         <a href="https://calip.com.tw/" class="btn" target="_blank" rel="noopener">官網</a>
       </div>
