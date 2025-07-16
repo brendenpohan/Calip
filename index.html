@@ -3,25 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calip – 產品應用</title>
+  <title>CALIP – 工控達人</title>
   <style>
     :root { --primary:#0078ff; --gray:#f5f6fa; --dark:#333; --radius:12px; }
     *{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:Arial,"Noto Sans TC",sans-serif;background:var(--gray);color:var(--dark);line-height:1.6;}
+
+    /* ---------- Header & Nav ---------- */
     header{background:#e4f0fa;}
     .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:1.2rem;}
-    .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;}
-    .logo-img{width:100px;height:100px;object-fit:cover;border-radius:50%;}
-    .brand-text strong{font-size:1.35rem;color:var(--dark);font-weight:700;}
-    .nav-menu{display:flex;gap:1rem;flex-wrap:wrap;}
-    .nav-menu a{color:var(--dark);text-decoration:none;font-weight:600;position:relative;}
-    .nav-menu a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--primary);transition:.3s;}
-    .nav-menu a:hover::after{width:100%;}
+    /* brand 左側 */
+    .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:inherit;}
+    .logo-img{width:64px;height:64px;object-fit:cover;border-radius:50%;}
+    .brand-text{line-height:1.25;}
+    .brand-text strong{font-size:1.25rem;font-weight:700;color:var(--dark);}
+    .brand-text span{font-size:.8rem;color:#1b6dcf;}
+
+    /* 導覽列 */
+    .nav-menu{display:flex;gap:2rem;align-items:center;}
+    .nav-menu a{color:var(--primary);text-decoration:none;font-weight:600;position:relative;}
+    .nav-menu a:hover{opacity:.8;}
+    .nav-menu a:not(.btn)::after{content:\"\";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--primary);transition:.3s;}
+    .nav-menu a:not(.btn):hover::after{width:100%;}
+
+    /* 官網按鈕 */
+    .btn{background:var(--primary);color:#fff;padding:.45rem 1.2rem;border-radius:9999px;}
+    .btn:hover{opacity:.9;}
+
+    /* ---------- Search Bar ---------- */
     .search-wrapper{background:#f0efed;padding:1.2rem 0;}
     .search-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:.5rem;}
     .search-inner input{width:280px;padding:.5rem .75rem;border:1px solid #ccc;border-radius:var(--radius);font-size:.95rem;}
     .search-inner button{background:var(--primary);border:none;padding:.55rem 1rem;border-radius:var(--radius);cursor:pointer;}
     .search-inner button svg{fill:#fff;width:18px;height:18px;}
+
+    /* ---------- Grid / Cards ---------- (保持不變) */
     .container{max-width:1200px;margin:2rem auto;padding:0 1rem;}
     .filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;}
     .filter-btn{background:#fff;border:1px solid var(--primary);color:var(--primary);padding:.4rem .8rem;border-radius:var(--radius);cursor:pointer;font-size:.9rem;transition:.2s;}
@@ -39,28 +55,39 @@
   </style>
 </head>
 <body>
+  <!-- ---------- Header ---------- -->
   <header>
     <nav class="nav">
-      <a href="index.html" class="brand"><img src="logo.png" alt="Calip Logo" class="logo-img"><div class="brand-text"><strong>開利普科技工業有限公司</strong></div></a>
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="Calip Logo" class="logo-img">
+        <div class="brand-text">
+          <strong>開利普科技</strong>
+          <span>自動控制的好夥伴</span>
+        </div>
+      </a>
+
       <div class="nav-menu">
         <a href="index.html">首頁</a>
-        <a href="applications.html" target="_blank" rel="noopener">產品應用</a>
-        <a href="solutions.html" target="_blank" rel="noopener">解決方案</a>
-        <a href="https://calip.com.tw/" target="_blank" rel="noopener">官方網站</a>
-        <a href="contact.html" target="_blank" rel="noopener">聯絡</a>
+        <a href="applications.html" target="_blank" rel="noopener">工控達人攻略</a>
+        <a href="solutions.html" target="_blank" rel="noopener">控制器控制什麼</a>
+        <a href="about.html"      target="_blank" rel="noopener">人機介面介紹</a>
+        <a href="topics.html"     target="_blank" rel="noopener">驅動主題</a>
+        <a href="https://calip.com.tw/" class="btn" target="_blank" rel="noopener">官網</a>
       </div>
     </nav>
   </header>
 
+  <!-- ---------- Search Bar ---------- -->
   <section class="search-wrapper">
     <div class="search-inner">
       <input type="search" placeholder="搜尋…" id="searchInput">
       <button id="searchBtn" aria-label="Search">
-        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16a6.471 6.471 0 0 0 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14Z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16a6.471 6.471 0 0 0 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14Z\"/></svg>
       </button>
     </div>
   </section>
 
+  <!-- ---------- 主內容 (卡片、篩選、搜尋 JS 與你現有程式一致) ---------- -->
   <main class="container" id="app">
     <div class="filter-bar" id="filterBar"></div>
     <div class="grid" id="cardGrid"></div>
@@ -68,21 +95,22 @@
 
   <footer>Copyright © 2025 開利普科技工業有限公司. All rights reserved.</footer>
 
-  <script>
+  <!-- JS放這裡 -->
+    <script>
     /* --------- 產品資料 (含 link) --------- */
     const applications = [
-      {id:1,title:"醫療級光纖感測",intro:"高精度光纖溫度感測解決方案，適用於體腔內即時監測。",img:"Test.png",category:"醫療",link:"detail-01.html"},
-      {id:2,title:"工業自動化通訊",intro:"耐高干擾的高速光通訊模組，優化工業 4.0 設備資料鏈。",img:"Test.png",category:"工業",link:"detail-02.html"},
-      {id:3,title:"戶外 5G 小基站",intro:"專為惡劣環境打造的光電轉換模組，確保 5G 小基站穩定運作。",img:"Test.png",category:"電信",link:"detail-03.html"},
-      {id:4,title:"測試 4",intro:"測試內容 4",img:"Test.png",category:"工業",link:"detail-04.html"},
-      {id:5,title:"測試 5",intro:"測試內容 5",img:"Test.png",category:"工業",link:"detail-05.html"},
-      {id:6,title:"測試 6",intro:"測試內容 6",img:"Test.png",category:"工業",link:"detail-06.html"},
-      {id:7,title:"測試 7",intro:"測試內容 7",img:"Test.png",category:"工業",link:"detail-07.html"},
-      {id:8,title:"測試 8",intro:"測試內容 8",img:"Test.png",category:"工業",link:"detail-08.html"},
-      {id:9,title:"測試 9",intro:"測試內容 9",img:"Test.png",category:"工業",link:"detail-09.html"},
-      {id:10,title:"測試 10",intro:"測試內容 10",img:"Test.png",category:"工業",link:"detail-10.html"},
-      {id:11,title:"測試 11",intro:"測試內容 11",img:"Test.png",category:"工業",link:"detail-11.html"},
-      {id:12,title:"測試 12",intro:"測試內容 12",img:"Test.png",category:"工業",link:"detail-12.html"}
+      {id:1,title:"醫療級光纖感測",intro:"高精度光纖溫度感測解決方案，適用於體腔內即時監測。",img:"Test.png",category:"網通",link:"detail-01.html"},
+      {id:2,title:"工業自動化通訊",intro:"耐高干擾的高速光通訊模組，優化工業 4.0 設備資料鏈。",img:"Test.png",category:"工業電腦",link:"detail-02.html"},
+      {id:3,title:"戶外 5G 小基站",intro:"專為惡劣環境打造的光電轉換模組，確保 5G 小基站穩定運作。",img:"Test.png",category:"能源管理",link:"detail-03.html"},
+      {id:4,title:"測試 4",intro:"測試內容 4",img:"Test.png",category:"智慧製造",link:"detail-04.html"},
+      {id:5,title:"測試 5",intro:"測試內容 5",img:"Test.png",category:"工業電腦",link:"detail-05.html"},
+      {id:6,title:"測試 6",intro:"測試內容 6",img:"Test.png",category:"工業電腦",link:"detail-06.html"},
+      {id:7,title:"測試 7",intro:"測試內容 7",img:"Test.png",category:"工業電腦",link:"detail-07.html"},
+      {id:8,title:"測試 8",intro:"測試內容 8",img:"Test.png",category:"工業電腦",link:"detail-08.html"},
+      {id:9,title:"測試 9",intro:"測試內容 9",img:"Test.png",category:"工業電腦",link:"detail-09.html"},
+      {id:10,title:"測試 10",intro:"測試內容 10",img:"Test.png",category:"工業電腦",link:"detail-10.html"},
+      {id:11,title:"測試 11",intro:"測試內容 11",img:"Test.png",category:"工業電腦",link:"detail-11.html"},
+      {id:12,title:"測試 12",intro:"測試內容 12",img:"Test.png",category:"工業電腦",link:"detail-12.html"}
     ];
 
     /* --------- 產生分類按鈕 --------- */
