@@ -25,7 +25,8 @@
     .brand-text{display:flex;flex-direction:column;align-items:flex-start;line-height:1.4;}
     .brand-text strong{font-size:1.6rem;font-weight:700;}
     .brand-text span{font-size:.95rem;color:#1b6dcf;}
-
+    /* BETA 標籤 */
+    .beta-tag{padding:.15rem .5rem;font-size:.7rem;font-weight:700;color:#fff;background:#ff5722;border-radius:9999px;letter-spacing:.5px;}
     .nav-menu{display:flex;align-items:center;gap:2rem;}
     .nav-menu a{color:var(--primary);text-decoration:none;font-weight:600;position:relative;}
     .nav-menu a:not(.btn)::after{content:\"\";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--primary);transition:.3s;}
@@ -94,6 +95,7 @@
           <strong>開利普科技</strong>
           <span>自動控制的好夥伴</span>
         </div>
+        <span class="beta-tag">BETA</span>
       </a>
 
       <input type="checkbox" id="nav-toggle" hidden>
@@ -132,12 +134,12 @@
     <script>
     /* --------- 產品資料 (含 link) --------- */
     const applications = [
-      {id:1,title:"醫療級光纖感測",intro:"高精度光纖溫度感測解決方案，適用於體腔內即時監測。",img:"Test.png",category:"網通",link:"detail-01.html"},
+      {id:1,title:"智慧畜牧養殖解決方案",intro:"隨著畜牧產業的飛速發展，加速推進畜牧業的現代化、資訊化建設已成為畜牧業發展越來越重要的因素。",img:"intelligent_farm.png",category:"網通",link:"intelligent_farm.html"},
       {id:2,title:"工業自動化通訊",intro:"耐高干擾的高速光通訊模組，優化工業 4.0 設備資料鏈。",img:"Test.png",category:"工業電腦",link:"detail-02.html"},
-      {id:3,title:"戶外 5G 小基站",intro:"專為惡劣環境打造的光電轉換模組，確保 5G 小基站穩定運作。",img:"Test.png",category:"能源管理",link:"detail-03.html"},
-      {id:4,title:"測試 4",intro:"測試內容 4",img:"Test.png",category:"智慧製造",link:"detail-04.html"},
-      {id:5,title:"測試 5",intro:"測試內容 5",img:"Test.png",category:"工業電腦",link:"detail-05.html"},
-      {id:6,title:"測試 6",intro:"測試內容 6",img:"Test.png",category:"工業電腦",link:"detail-06.html"},
+      {id:3,title:"智慧樓宇解決方案",intro:"在辦公大樓的應用裡,企業可以設置能源監控確保能源的使用在友善環境的範圍內,還能因此節省企業營運成本,避免不必要的資源浪費。",img:"intelligent_building.png",category:"能源管理",link:"intelligent_building.html"},
+      {id:4,title:"電子化eSOP解決方案—讓生產線更靈活",intro:"在更加講求效率與節能的時代，過去的生產作業流程也需跟著轉型，融入電子化、無紙化等概念，來達到簡易生產以及能快速換線，而eSOP正好符合現今的種種需求。",img:"eSOP.png",category:"智慧製造",link:"eSOP.html"},
+      {id:5,title:"遠程住宅太陽能能源監控",intro:"測試內容 5",img:"solar_power_ monitor.png",category:"能源管理",link:"solar_power_ monitor.html"},
+      {id:6,title:"閘道器應用案例-風力發電廠",intro:"案例分享",img:"wind_farm_gateway.png",category:"網通",link:"wind_farm_gateway.html"},
       {id:7,title:"測試 7",intro:"測試內容 7",img:"Test.png",category:"工業電腦",link:"detail-07.html"},
       {id:8,title:"測試 8",intro:"測試內容 8",img:"Test.png",category:"工業電腦",link:"detail-08.html"},
       {id:9,title:"測試 9",intro:"測試內容 9",img:"Test.png",category:"工業電腦",link:"detail-09.html"},
