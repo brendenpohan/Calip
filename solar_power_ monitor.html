@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calip｜自動控制最佳夥伴</title>
+
+  <!-- Open‑Graph -->
+  <meta property="og:title"       content="Calip｜自動控制最佳夥伴">
+  <meta property="og:description" content="提供工控達人攻略、控制器應用、人機介面教學等完整解決方案。">
+  <meta property="og:url"         content="https://calip.vercel.app/">
+  <meta property="og:image"       content="https://raw.githubusercontent.com/brendenpohan/Calip/main/logo.png">
+
+  <style>
+    :root{--primary:#0078ff;--gray:#f5f6fa;--dark:#333;--radius:12px;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:Arial,"Noto Sans TC",sans-serif;background:var(--gray);color:var(--dark);line-height:1.6;}
+
+    /* ===== Header ===== */
+    header{background:#e4f0fa;}
+    .nav{max-width:1200px;margin:0 auto;padding:1.2rem;display:flex;align-items:center;justify-content:space-between;}
+
+    .brand{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:inherit;}
+    .logo-img{width:72px;height:72px;border-radius:50%;object-fit:cover;}
+    .brand-text{display:flex;flex-direction:column;align-items:flex-start;line-height:1.4;}
+    .brand-text strong{font-size:1.6rem;font-weight:700;}
+    .brand-text span{font-size:.95rem;color:#1b6dcf;}
+    /* BETA 標籤 */
+    .beta-tag{padding:.15rem .5rem;font-size:.7rem;font-weight:700;color:#fff;background:#ff5722;border-radius:9999px;letter-spacing:.5px;}
+    .nav-menu{display:flex;align-items:center;gap:2rem;}
+    .nav-menu a{color:var(--primary);text-decoration:none;font-weight:600;position:relative;}
+    .nav-menu a:not(.btn)::after{content:\"\";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--primary);transition:.3s;}
+    .nav-menu a:not(.btn):hover::after{width:100%;}
+    .btn{background:var(--primary);color:#fff;padding:.45rem 1.2rem;border-radius:9999px;}
+
+    /* ☰ 漢堡（桌機隱藏） */
+    .burger{display:none;font-size:1.8rem;cursor:pointer;color:var(--primary);}
+    #nav-toggle{display:none;}
+
+    /* ===== Search Bar ===== */
+    .search-wrapper{background:#f0efed;padding:1.2rem 0;}
+    .search-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:.5rem;}
+    .search-inner input{width:280px;padding:.5rem .75rem;border:1px solid #ccc;border-radius:var(--radius);font-size:.95rem;}
+    .search-inner button{background:var(--primary);border:none;padding:.55rem 1rem;border-radius:var(--radius);cursor:pointer;}
+    .search-inner button svg{fill:#fff;width:18px;height:18px;}
+
+    /* ===== Cards ===== */
+    .container{max-width:1200px;margin:2rem auto;padding:0 1rem;}
+    .filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+    .filter-btn{background:#fff;border:1px solid var(--primary);color:var(--primary);padding:.4rem .8rem;border-radius:var(--radius);cursor:pointer;font-size:.9rem;}
+    .filter-btn.active,.filter-btn:hover{background:var(--primary);color:#fff;}
+
+    .grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}
+    .card-link{text-decoration:none;color:inherit;}
+    .card{display:flex;flex-direction:column;height:100%;background:#fff;border-radius:var(--radius);box-shadow:0 4px 10px rgba(0,0,0,.06);transition:transform .2s;}
+    .card:hover{transform:translateY(-4px);}
+    .card img{width:100%;aspect-ratio:16/9;object-fit:cover;}
+    .card .content{padding:1rem;display:flex;flex-direction:column;flex:1;}
+    .card h3{margin-bottom:.5rem;font-size:1.1rem;}
+    .card p{flex:1;font-size:.95rem;color:#555;margin-bottom:1rem;}
+    .more{margin-top:auto;background:var(--primary);color:#fff;padding:.5rem 1rem;border-radius:var(--radius);font-size:.9rem;}
+    /* Post layout --------------------------------------------------*/
+    .post-wrap{max-width:900px;margin:3rem auto;padding:0 1rem;}
+    article{background:#fff;padding:2rem;border-radius:var(--radius);box-shadow:0 4px 10px rgba(0,0,0,.06);}
+    article h1{font-size:1.8rem;margin-bottom:1rem;}
+    article h2{font-size:1.35rem;margin:1.5rem 0 .5rem;}
+    article p{margin:1rem 0;line-height:1.8;}
+    article img{width:100%;border-radius:var(--radius);margin:1.5rem 0;}
+    /* ===== Footer ===== */
+    footer{background:#fff;padding:1.5rem 0;text-align:center;font-size:.9rem;color:#777;margin-top:3rem;}
+
+    /* ===== Mobile (≤768px) ===== */
+    @media(max-width:768px){
+      .burger{display:block;}
+      .nav{flex-wrap:wrap;row-gap:.5rem;padding:1rem;}
+      .logo-img{width:48px;height:48px;}
+      .brand-text strong{font-size:1.25rem;}
+      /* 收合導覽列 */
+      .nav-menu{display:none;position:absolute;left:0;right:0;top:80px;background:#fff;padding:1.2rem;flex-direction:column;gap:1rem;box-shadow:0 4px 10px rgba(0,0,0,.1);z-index:999;}
+      #nav-toggle:checked ~ .nav-menu{display:flex;}
+    }
+      /* 只針對 nav 裡 class="btn" 的官網按鈕 */
+.nav-menu .btn{
+  background:var(--primary);   /* 保持藍底 */
+  color:#fff;                  /* 文字改白色 */
+  padding:.45rem 1.2rem;
+  border-radius:9999px;
+  font-weight:600;
+  text-decoration:none;
+}
+/* 文章區塊整體行距 */
+.post-wrap p{
+  line-height: 1.8;          /* 1.6~1.8 之間視覺最舒服，自行微調 */
+  margin-bottom: 1rem;       /* 段落與段落的間距，預設 16px=1rem */
+}
+
+/* 標題與段落的距離 */
+.post-wrap h1,
+.post-wrap h2,
+.post-wrap h3{
+  line-height: 1.4;          /* 標題行距較緊湊 */
+  margin: 2rem 0 1rem;       /* 上 2rem、下 1rem，可依喜好調整 */
+}
+
+/* 如果想讓清單、圖片與文字有額外留白 */
+.post-wrap img{
+  display:block;             /* 讓圖片當區塊元素 */
+  max-width:100%;
+  margin: 1.2rem auto;       /* 圖片上下 1.2rem、左右置中 */
+}
+.img-small { width: 300px; height: auto; }
+.img-middle { width: 500px; height: auto; }
+.img-large { width: 80%;  max-width:800px; height:auto; }
+
+  </style>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header>
+    <nav class="nav">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="Calip Logo" class="logo-img">
+        <div class="brand-text">
+          <strong>開利普科技</strong>
+          <span>自動控制的好夥伴</span>
+        </div>
+        <span class="beta-tag">BETA</span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" hidden>
+      <label for="nav-toggle" class="burger">☰</label>
+
+      <div class="nav-menu">
+        <a href="index.html">首頁</a>
+        <a href="applications.html" target="_blank" rel="noopener">工控達人攻略</a>
+        <a href="solutions.html"  target="_blank" rel="noopener">控制器控什麼</a>
+        <a href="about.html"      target="_blank" rel="noopener">人機介面介什麼面</a>
+        <a href="topics.html"     target="_blank" rel="noopener">驅動主題</a>
+        <a href="https://calip.com.tw/" class="btn" target="_blank" rel="noopener">官網</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 文章內容 ---------------------------------------------------->
+  <div class="post-wrap">
+    <article>
+      <h1>遠程住宅太陽能能源監控</h1>
+
+      <img src="solar_power_ monitor.png" alt="主視覺"class="img-large">
+
+      <h2>案例簡介</h2>
+      <p>太陽能發電是藉由太陽照射太陽能板,再將所產生的電流傳送到發電系統使其作用,其中最重要的角色之一為”逆變器”。 逆變器用於太陽能發電系統中與太陽能控制器、電池及電錶配套,將直流電轉換為交流電,實現輸出的電壓、頻率、相位與電網相同。
+         有一東南亞太陽能服務供應商,表示目前所遇問題為,當蓄電池電量下降到一定數值以下時,逆變器會立即斷電,一旦斷電蓄電池電壓會迅速升高,逆變器又立即通電,反覆斷電、通電將導致工作效率異常, 故客戶希望能取得逆變器相關數據資料,用於遠程監看逆變器,隨時掌握業主家中逆變器狀態,以利逆變器的維護作業。</p><br>
+      <h2>解決方案</h2>
+      <p>推薦客戶使用ES21-1S1A02協議閘道器,連接蓄電池與逆變器; ES21-1S1A02為屏通最新研發的協議閘道器,內建串列埠、網路埠,用以連接太陽能控制器、蓄電池與逆變器;將Modbus收集之數據以無線通訊上傳至PC端,即時毫秒級採集數據並將歷史資料存檔。除此之外,搭配屏通掌控(HMI in Hand)APP,其功用為將現場數據資料可視化,使用者可依據自行連結的設備,進行警報通知的畫面與參數的規劃,當逆變器轉換電流產生數值異常(急速下降、上升)時,能即時以警報告知狀況發生,客戶即可使用手機、平板等行動裝置,遠程監看現場逆變器狀態方便排除異常狀況。</p><br>
+
+
+      </p>
+
+
+    </article>
+  </div>
+
+  <footer>Copyright © 2025 開利普科技工業有限公司.</footer>
+</body>
+</html>
