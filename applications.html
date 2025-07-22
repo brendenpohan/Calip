@@ -112,7 +112,20 @@
 .img-small { width: 300px; height: auto; }
 .img-middle { width: 500px; height: auto; }
 .img-large { width: 80%;  max-width:800px; height:auto; }
+/* === 頁面副標（淡綠底） ===================== */
+.page-banner{
+  background:#e8f6b3;        /* 淡綠色，可自行換色 */
+  padding:2.5rem 1rem;       /* 上下 2.5rem 留空，左右 1rem */
+  text-align:center;
+}
+.page-banner h2{
+  font-size:1.6rem;
+  font-weight:600;
+  color:var(--dark);
+  margin:0;                 /* 取消預設間距 */
+}
 
+      
   </style>
 </head>
 <body>
@@ -140,31 +153,33 @@
         <a href="https://calip.com.tw/" class="btn" target="_blank" rel="noopener">官網</a>
       </div>
     </nav>
+    <!-- ===== 綠底副標 ===== -->
+<section class="page-banner">
+  <h2>工控達人攻略</h2>   <!-- 想顯示的文字改這裡 -->
+</section>
+
   </header>
 
   <!-- 文章內容 ---------------------------------------------------->
   <div class="post-wrap">
     <article>
-      <h1>智慧畜牧養殖解決方案</h1>
+      <h1>淺談自動控制</h1>
+      <img src="control.png" alt="主視覺"class="img-large">
 
-      <p>隨著畜牧產業的飛速發展，加速推進畜牧業的現代化、資訊化建設已成為畜牧業發展越來越重要的因素。系統通過智慧物聯HMI即時採集畜禽養殖環境資料，借助IDCS服務進行無線通訊，實現智慧養殖管理SCADA平臺的遠端即時監控，並根據採集資料進行邊緣運算分析結果，再通過IDCS雲聯服務遠端控制畜禽現場相應的設備，使畜禽養殖環境達到最佳狀態，實現安全生產，科學管理，降低成本，減少人力，增加產值效益。可廣泛應用於養殖業，林業，種植業等現代農業系統及傳統農業系統的數位化升級改造。</p>
+      <p>自動化、自動控制其實就是在幫助人類 、取代人類動作 、讓人類省力、省時、不涉及危險…等目的
+若將自動控制系統想像成是一個人， 那麼我們的”五官”就如同是檢知外部變化，也就是輸入的功能，包含視覺、聽覺、味覺、嗅覺、觸覺 
+當檢知外部變化後 ，再用”頭腦”思考來控制如何回應，最後透過”肌肉&骨骼”做出正確的動作
+</p>
 
-      <img src="intelligent_farm.png" alt="主視覺"class="img-large">
+      <img src="control_body.png" alt="主視覺"class="img-large">
 
-      <h2>方案優勢</h2>
-      <h3>● 養殖舍環境資訊智慧採集</h3>
-      <img src="intelligent_farm_1.png" alt="副視覺" class="img-middle">
-      <p>將現場採集的資料以4G無線方式連接雲智慧養殖管理SCADA平臺，實現養殖舍內環境(溫度、濕度、光照、有害氣體(NH3、H2S)等指數)信號的自動檢測和傳輸。無線組網減少了佈線，降低了施工難度。</p><br>
-      <h3>● 環境遠端/自動控制</h3>
-      <img src="intelligent_farm_2.png" alt="副視覺" class="img-middle">
-      <p>通過雲智慧養殖管理SCADA平臺或者手機APP可對養殖舍內相關設備(除濕機、加熱器、開窗機、紅外燈、風機等)進行遠端集中控制和聯動控制。</p><br>
-      <h3>● 雲智慧養殖管理SCADA平臺</h3>
-      <img src="intelligent_farm_3.png" alt="副視覺" class="img-middle">
-      <p>實現對養殖舍採集資訊的展示、存儲、分析、管理;提供數值設置、告警功能。用戶可通過PC端、手機遠端登入管理平臺，掌控各養殖舍的狀況，對養殖場的生產經營實施監督和管理。</p><br>
-      <h3>● 遠端影片監控</h3>
-      <img src="intelligent_farm_4.png" alt="副視覺" class="img-middle">
-      <p>監控攝像機可實現隨時查看現場動物的活動狀況，減少人工現場巡查次數，提高了管理效率，此外，還可以對養殖場周邊環境進行安防監視。</p><br>
-
+      <h2>相對應工控元件</h2>
+      <h3>● 檢知器 </h3>
+      <p>微動開關，限動開關，溫度SENSOR，編碼器，超音波SENSOR，雷射感知，CCD ……</p><br>
+      <h3>● 控制元件</h3>
+      <p>計時器，計數器，溫度控制器，可程式控制器…</p><br>
+      <h3>● 輸出動作</h3>
+      <p>馬達，閥門，顯示器，蜂鳴器…..</p><br>
 
       </p>
 
